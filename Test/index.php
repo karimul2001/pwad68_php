@@ -17,6 +17,8 @@
 
 <?php 
 
+phpinfo();
+
 echo "how problem."
 
 ?>

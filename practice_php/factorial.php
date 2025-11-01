@@ -29,5 +29,6 @@
         <input type="number" name="fact" placeholder="Enter your number"> <br>
         <input type="submit" name="submit" value="Check">
      </form>
+     
 </body>
 </html>
