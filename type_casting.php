@@ -26,8 +26,6 @@
  echo $txt . "<br>";
  echo gettype($txt);
 
-
-
 ?>
 <hr>
 

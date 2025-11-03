@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Form Validation</h3>
+    <form action="" name="form_validate" onsubmit="return formValidate()">
+        Name:<br>
+        <input type="text" name="fullname" placeholder="Enter your fullname" value=""><br>
+        Phone Number:<br>
+        <input type="nember" name="phone" placeholder="Enter phone number"><br>
+        Email: <br>
+        <input type="text" name="email" placeholder="Enter email"><br>
+        Address: <br>
+        <textarea name="address" id="" placeholder="Enter your address"></textarea><br>
+        <input type="submit" name="submit" value="SUBMIT">
+    </form>
+
+    <script>
+        function formValidate() {
+            let fullname = document.form_validate.fullname.value;
+            let phone = document.form_validate.phone.value;
+            let email = document.form_validate.email.value;
+            let address = document.form_validate.address.value;
+            if (fullname == "") {
+                alert("Plase enter your name");
+                return false;
+            }
+
+            if (phone == "") {
+                alert("Plase enter your number");
+                return false;
+            }
+            if (email == "") {
+                alert("Plase enter your email");
+                return false;
+            }
+            if (address == "") {
+                alert("Plase enter your address");
+                return false;
+            }
+            alert("All Data Validate")
+            return true;
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>
