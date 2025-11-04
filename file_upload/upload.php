@@ -24,7 +24,7 @@
 
             $tmpfile = $_FILES['myfile']['tmp_name'];
             $filesize = $_FILES['myfile']['size']; //Byte
-            $maxSize = 576; //1MB
+            $maxSize = 576; //.5MB
             $ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
             $allowedTypes = ["jpg", "jpeg", "png"];
             $errors = [];
@@ -37,8 +37,8 @@
             }
             //print_r($errors);
             if(count($errors)>0){
-                foreach($errors as $errors){
-                    echo $errors . "<br>";
+                foreach($errors as $err){
+                    echo $err . "<br>";
                 }
 
             } else{
