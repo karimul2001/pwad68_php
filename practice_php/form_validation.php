@@ -7,6 +7,7 @@
     <style>
         table, tr, td{
             border: 1px solid black;
+            border-collapse: collapse;
         }
     </style>
 </head>
@@ -37,7 +38,7 @@
                 $langs_output .= $lang . ",";
             }
         }
-        echo $name;
+        
     }
        
     

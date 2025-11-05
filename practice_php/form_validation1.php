@@ -22,13 +22,13 @@
         $errors = [];
         //name
         if(!isset($_REQUEST["name"])|| $_REQUEST["name"] ==""){
-            $errors = "You must enter name";
+            $errors[] = "You must enter name";
         } else {
             $name = $_REQUEST['name'];
         }
         //email
         if(!isset($_REQUEST["email"])|| $_REQUEST["email"] ==""){
-            $errors = "You Must enter email";
+            $errors[] = "You Must enter email";
         } else {
             $email = $_REQUEST['email'];
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -44,16 +44,46 @@
                 $skill_output .= $skill . ",";
             }
         }
-        if(isset($_REQUEST["language"])){
+        if(!isset($_REQUEST["language"])){
+            $errors[] = "You must selet one language";
+        } else {
             $language = $_REQUEST['language'];
             foreach($language as $lang){
                 $lang_output .= $lang . ",";
             }
         }
-        
+
+        if(count($errors) != 0){
+            // print_r($errors);
+           echo "<ul>";
+            foreach ($errors as $err){
+                echo "<li>" . $err . "</li>";
+            }
+            echo "</ul>";
+        }
+        else{
+?>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><?php echo $name; ?></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><?php echo $email; ?></td>
+        </tr>
+        <tr>
+            <td>Skills</td>
+            <td><?php echo $skill_output; ?></td>
+        </tr>
+        <tr>
+            <td>Languages</td>
+            <td><?php echo $lang_output; ?></td>
+        </tr>
+    </table>
+    <?php
+        }
     }
-
-
     ?>
     <form action="" method="POST">
         <label for="">Name:</label><br>
@@ -77,23 +107,6 @@
         <input type="submit" name="submit" value="submit"><br><br>
         
     </form>
-    <table>
-        <tr>
-            <td>Name</td>
-            <td><?php echo $name; ?></td>
-        </tr>
-        <tr>
-            <td>Email</td>
-            <td><?php echo $email; ?></td>
-        </tr>
-        <tr>
-            <td>Skills</td>
-            <td><?php echo $skill_output; ?></td>
-        </tr>
-        <tr>
-            <td>Languages</td>
-            <td><?php echo $lang_output; ?></td>
-        </tr>
-    </table>
+    
 </body>
 </html>
