@@ -3,38 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Form Validation</title>
+    <style>
+        table, tr, td{
+            border: 1px solid black;
+            border-collapse: collapse;
+            height: 40px;
+            width: 20%;
+            background-color: skyblue;
+        }
+    </style>
 </head>
 <body>
-    <h2>Form Validation</h2>
-    <form action="" name="myform" method="POST">
-    Your Name:
-    <input type="text" name="name" placeholder="Enter Your name"><br>
-    Email Address:
-    <input type="email" name="email" placeholder="enter email"><br>
-    Favorite Programming langulage:
-    <select name="skills" id="">
-        <option value="C#">C#</option>
-        <option value="JavaScript">JavaScript</option>
-        <option value="Perl">Perl</option>
-        <option value="C++">C++</option>
-        <option value="PHP">PHP</option>
-        <option value="Python">Phython</option>
-    </select><br>
-    Favorite Game:
-    <input type="checkbox" name="game" vlaue="cricket">Cricket
-    <input type="checkbox" name="game" vlaue="football">Football
-    <input type="checkbox" name="game" vlaue="kabadi">Kabadi
-    <input type="checkbox" name="game" vlaue="racket">Racket
-</form><br>
-
-<input type="submit" name="submit" value="SUBMIT">
-<?php
-    if (isset($_REQUEST['submit'])) {
-       echo("<pre>");
-       print_r($_REQUEST);
+    <h3>Form Validation</h3>
+    <?php
+    if(isset($_REQUEST["submit"])){
+        $name = "";
+        $email = "";
+        $skill_output = "";
+        $lang_output = "";
+        $errors = [];
+        //name
+        if(!isset($_REQUEST["name"])|| $_REQUEST["name"] == ""){
+            $errors[] = "Plase enter your name";
+        } else {
+            $name = $_REQUEST['name'];
+        }
+        //email
+        if(!isset($_REQUEST["email"]) || $_REQUEST["email"] == ""){
+            $errors[] = "Please enter your email";
+        } else {
+            $email = $_REQUEST['email'];
+            if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+                $errors[] = "Email is not valid";
+            }
+        }
+        //skills
+        if(!isset($_REQUEST["skills"])){
+            $errors[] = "must be select skills";
+        } else {
+            $skills = $_REQUEST['skills'];
+            $skill_output = implode(",", $skills);
+        }
+        //languages
+        if(!isset($_REQUEST["language"])){
+            $errors[] = "must be select language";
+        } else {
+            $langs = $_REQUEST['language'];
+            $lang_output = implode(",", $langs);
+        }
+        if(count($errors) != 0){
+            foreach($errors as $err){
+                echo "<ul>";
+                echo "<li>" .$err . "</li>";
+                echo "</ul>";
+            }
+        } else {
+            ?>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><?php echo $name ?></td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td><?php echo $email ?></td>
+        </tr>
+        <tr>
+            <td>Skills</td>
+            <td><?php echo $skill_output ?></td>
+        </tr>
+        <tr>
+            <td>Languages</td>
+            <td><?php echo $lang_output ?></td>
+        </tr>
+        
+    </table><br><br>
+            <?php
+        }
+        
     }
 
-    ?>
+?>
+
+
+    <form action="" method="POST">
+        <label for="">Name:</label><br>
+        <input type="text" name="name"><br><br>
+        <label for="">Email:</label><br>
+        <input type="email" name="email"><br><br>
+        <label for="">Skills</label><br>
+        <select name="skills[]" id="" multiple="multiple">
+            <option value="Basic HTML">Basic HTML</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="PHP">PHP</option>
+            <option value="MySQL">MySQL</option>
+            <option value="Laravel">Laravel</option>
+            <option value="React">React</option>
+            <option value="Python">Python</option>
+            <option value="CSS">CSS</option>
+        </select><br><br>
+        <label for="">What want to learn</label><br>
+        <input type="checkbox" name="language[]" value="CSharp">CSharp <br>
+        <input type="checkbox" name="language[]" value="C">C <br>
+        <input type="checkbox" name="language[]" value="C+">C+ <br>
+        <input type="checkbox" name="language[]" value="C++">C++ <br>
+        <input type="checkbox" name="language[]" value="Vue">Vue <br>
+        <input type="checkbox" name="language[]" value="Java">Java <br><br>
+        <input type="submit" name="submit" value="SUBMIT"><br><br>
+
+    </form>
+
+    
 </body>
 </html>

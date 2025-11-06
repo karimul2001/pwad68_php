@@ -48,27 +48,22 @@
             $errors[] = "You must select one skill";
         } else {
             $skills = $_REQUEST['skills'];
-            foreach ($skills as $skill) {
-                $skills_output .= $skill . ",";
-            }
+            $skills_output = implode(",", $skills);
+            // foreach ($skills as $skill) {
+            //     $skills_output .= $skill . ",";
+            // }
         }
         //Language
         if (!isset($_REQUEST['languages'])) {
             $errors[] = "You must select one language";
         } else {
             $langs = $_REQUEST['languages'];
-            foreach ($langs as $lang) {
-                $langs_output .= $lang . ",";
+            $langs_output = implode(",", $langs);
+            // foreach ($langs as $lang) {
+            //     $langs_output .= $lang . ",";
+                
             }
-            $lastLangkey = array_key_last($langs);
-            foreach ($langs as $key => $lang) {
-                if ($key == $lastLangkey) {
-                    $langs_output .= $lang;
-                } else {
-                    $langs_output .= $lang . ",";
-                }
-            }
-        }
+           
         if (count($errors) != 0) {
             echo "<ul>";
             foreach ($errors as $err){
