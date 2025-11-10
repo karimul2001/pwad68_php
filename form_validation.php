@@ -99,11 +99,9 @@
     }
 
     ?>
-    <form action="" method="post">
+    <form action="" method="get">
         <label for="">Your name:</label><br>
-        <input type="text" name="name" id="" value="<?php if (!isset($_REQUEST['name'])) {
-                                                        echo $_REQUEST['name'];
-                                                    } ?>"><br><br>
+        <input type="text" name="name" id="" ><br><br>
 
         <label for="">Email: </label><br>
         <input type="text" name="email" id=""><br><br>
