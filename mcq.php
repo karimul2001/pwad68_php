@@ -48,12 +48,12 @@
 ?>
 <hr>
 <?php
-  function myFunction(){
-    $x = 5;
-    echo "Result1: $x,";
-  }
-  myFunction();
-  echo "Result2: $x";
+  // function myFunction(){
+  //   $x = 5;
+  //   echo "Result1: $x,";
+  // }
+  // myFunction();
+  // echo "Result2: $x";
 ?>
 <hr>
 <?php

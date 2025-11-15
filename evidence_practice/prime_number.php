@@ -12,19 +12,32 @@
             $prime = $_REQUEST['prime'];
             if($prime==1){
                 echo $prime . " is not a prime number";
-                exit;
+                
             }
             if($prime==2){
                 echo $prime . " is a prime number";
-                exit;
+               
             }
-            elseif($x = 2 ; $x <= $prime; $x++){
+            $output;
+           if($prime>2){
+            for($i = 2; $i < $prime; $i++){
+                if($prime % $i == 0){
+                    $output = $prime . " is not a prime number";
+                    break;
+                }else{
+                    $output = $prime . " is a prime number";
+                }
                 
             }
+
+           }
+           echo $output;
+           
+           
         }
 
     ?>
-    <form action="" method="post">
+    <form action="" method="get">
         <input type="number" name="prime" placeholder="Enter your number"><br>
         <input type="submit" name="submit" value="SUBMIT">
     </form>
