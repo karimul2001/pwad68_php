@@ -10,10 +10,15 @@
     <?php 
     if(isset($_REQUEST["search"])){
         $studentId = $_REQUEST['student_id'];
+        //include ("resultsClass1.php");
         include ("resultsClass1.php");
 
+        // $sheet = new student("results_sheet1.txt");
+        // $results = $sheet->result($student_id);
+        // echo $results;
+
         $sheet = new student("results_sheet1.txt");
-        $results = $sheet->result($student_id);
+        $results = $sheet->result($studentId);
         echo $results;
     }
 
