@@ -1,3 +1,10 @@
+<?php 
+session_start();
+  if(!isset($_SESSION['loggedin'])){
+    header("Location:index.php");
+  }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,7 +54,19 @@
              <?php
                   if(isset($_POST['submit'])){
                     extract($_POST);
-                    $sql = "INSERT INTO students VALUES(NULL, '$first_name', '$last_name', '$birthdate', '$notes')";
+                   
+                   
+                   if(isset($_FILES['photo'])){
+                    $photo_name = $_FILES['photo']['name'];
+                    $tmp_name = $_FILES['photo']['tmp_name'];
+                    $upload_url = "Student/uploads/" . $photo_name;
+                    
+                    move_uploaded_file($tmp_name, "uploads/". $photo_name);
+                   }
+                    
+                    
+                    
+                    $sql = "INSERT INTO students VALUES(NULL, '$first_name', '$last_name', '$birthdate', '$notes', '$upload_url')";
                     $db->query($sql);
                     if($db->affected_rows){
                       echo '<div class="alert alert-success"> Successfully </div>';
@@ -62,7 +81,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form id="quickForm" action="" method="post">
+              <form id="quickForm" action="" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">First Name</label>
@@ -79,6 +98,10 @@
                   <div class="form-group">
                     <label for="exampleInputEmail1">Notes</label>
                     <textarea name="notes" id="" class="form-control"></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Photo</label>
+                    <input type="file" name="photo">
                   </div>
                  
                   <!-- <div class="form-group mb-0">
@@ -134,7 +157,7 @@
 <!-- AdminLTE App -->
 <script src="../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="../dist/js/demo.js"></script>
+<!-- <script src="../dist/js/demo.js"></script> -->
 <!-- Page specific script -->
 <!-- <script>
 $(function () {
