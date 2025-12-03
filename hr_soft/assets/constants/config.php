@@ -4,7 +4,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "hr_soft";
+$dbname = "hr_management";
 
 // $servername = "localhost";
 // $username = "root";

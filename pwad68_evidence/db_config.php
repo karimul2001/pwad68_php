@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db = "pwad68_evidence";
+$db = "evidence";
 
 $db = new mysqli($host, $user, $pass, $db);
 

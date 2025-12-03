@@ -17,7 +17,6 @@
     <?php
         $sql = "SELECT * FROM products_list";
         $rowData = $db->query($sql);
-        
     ?>
     <table>
         <tr>
@@ -28,13 +27,14 @@
         </tr>
         <?php while($row = $rowData->fetch_assoc()): ?>
         <tr>
-            <td><?php echo $row['id']; ?></td>
-            <td><?php echo $row['name']; ?></td>
+            <td><?php echo $row['product_id']; ?></td>
+            <td><?php echo $row['product_name']; ?></td>
             <td><?php echo $row['price']; ?></td>
-            <td><?php echo $row['Company']; ?></td>
+            <td><?php echo $row['manufacture_name']; ?></td>
         </tr>
         <?php endwhile;?>
     </table>
+
     <a href="manufacturer_entry.php">Manufacturer Entry</a>
 </body>
 </html>
